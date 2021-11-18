@@ -186,6 +186,7 @@ void USART2_CheckDmaReception(void)
 
 		else{
 			USART2_ProcessData(&bufferUSART2dma[old_pos], DMA_USART2_BUFFER_SIZE - old_pos);
+			//USART2_ProcessData(&bufferUSART2dma[old_pos]);
 			memset(bufferUSART2dma, 0, DMA_USART2_BUFFER_SIZE);
 			LL_DMA_DisableChannel(DMA1, LL_DMA_CHANNEL_6);
 			LL_DMA_ConfigAddresses(	DMA1, LL_DMA_CHANNEL_6,
@@ -200,6 +201,23 @@ void USART2_CheckDmaReception(void)
 		}
 
 	}
+	/*
+	if (old_pos >= 20)
+	{
+		USART2_ProcessData(&bufferUSART2dma[old_pos], DMA_USART2_BUFFER_SIZE - old_pos);
+		memset(bufferUSART2dma, 0, DMA_USART2_BUFFER_SIZE);
+		LL_DMA_DisableChannel(DMA1, LL_DMA_CHANNEL_6);
+		LL_DMA_ConfigAddresses(	DMA1, LL_DMA_CHANNEL_6,
+											 	LL_USART_DMA_GetRegAddr(USART2, LL_USART_DMA_REG_DATA_RECEIVE),
+												(uint32_t)bufferUSART2dma,
+												LL_DMA_GetDataTransferDirection(DMA1, LL_DMA_CHANNEL_6));
+
+		LL_DMA_SetDataLength(DMA1, LL_DMA_CHANNEL_6, DMA_USART2_BUFFER_SIZE);
+		LL_DMA_EnableChannel(DMA1, LL_DMA_CHANNEL_6);
+		LL_USART_EnableDMAReq_RX(USART2);
+		old_pos = 0;
+	}
+	*/
 }
 
 
