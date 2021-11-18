@@ -36,10 +36,8 @@ void SystemClock_Config(void);
  *
  * @param1 - received sign
  */
-//void proccesDmaData(uint8_t* sign);
 
 void proccesDmaData(const uint8_t* sign, uint16_t len);
-//void proccesDmaData(const uint8_t* sign);
 void print();
 /* Space for your global variables. */
 
@@ -49,15 +47,8 @@ void print();
   int start = 0;
   int velkost = 256;
   letter_count_ letters;
-  //uint16_t pos = 0;
 
   uint8_t string[20];
-  //char tx_data;
-/*
-  uint8_t s1[] = "Buffer capacity: %d ", velkost;
-  uint8_t s2[] = "occupied memory: %d", pos;
-  uint8_t s3[] = " bytes, load [in %]: %f" percento;
-*/
 
   uint8_t tx_data[] = "Data to send over UART DMA!\n\r";
   uint8_t rx_data[10];
@@ -100,23 +91,6 @@ int main(void)
 
   	   //type your code here:
 
-	//char str = velkost + '0';
-	//tx_data = "Buffer capacity: " + velkost + " bytes, occupied memory: " + pos + " bytes, load [in %]: " + percento  + " %";
-	//tx_data = "Buffer capacity:"+male;
-	//percento = (velkost/100)*pos;
-  	//tx_data[] = "Buffer capacity: "%d" bytes, occupied memory: "%d" bytes, load [in %]: "%f" %\nBig size letter: "%d", Low size letter: "%d" ", velkost, pos, percento, velke, male;
-
-	  /*
-	uint8_t s4[] = s1 + velkost;
-	uint8_t s5[] = s4 + s2;
-	uint8_t s6[] = s5 + velkost;
-	uint8_t s7[] = s6 + s3;
-	uint8_t s8[] = s6 + percento;
-	*/
-	//char pomocna = velkost + '\0';
-	//itoa(velkost, string, 10);
-	//strcat(s1, string);
-
 	print();
   	LL_mDelay(5000);
   	
@@ -149,8 +123,6 @@ void print(){
 	USART2_PutBuffer(s2, strlen(s2));
 	LL_mDelay(50);
 
-	//percento = (occupiedMem/buffer_size)*100.0;
-	//sprintf(load, "%f", percento);
 	gcvt(percento, 6, load);
 	strcat(s3, load);
 
@@ -213,15 +185,12 @@ void SystemClock_Config(void)
  * Implementation of function processing data received via USART.
  */
 void proccesDmaData(const uint8_t* sign, uint16_t len)
-//void proccesDmaData(const uint8_t* sign)
 {
 	/* Process received data */
 	
 	uint8_t pom = 0;
 	int count;
 		// type your algorithm here:
-	
-	//uint16_t len = strlen(sign);
 
 	while(pom < len){
 	uint8_t akt = *(sign+pom);
